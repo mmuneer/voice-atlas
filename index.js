@@ -31,7 +31,6 @@ function geoCodesByTrend(resp) {
 	params = {}
 	client.get('trends/available', params, function(error, trends, response) {
 		if(!error) {
-			console.log(trends);
 			resp.json(trends);
 		}
 		else {
@@ -46,7 +45,6 @@ function trends(place_id, resp) {
 	params = {id: place_id}
 	client.get('trends/place', params, function(error, trends, response) {
 		if(!error) {
-			console.log(trends);
 			resp.json(trends);
 		}
 		else {
@@ -61,7 +59,6 @@ function getLatLng(place_id, resp) {
 	params = {}
 	client.get('geo/id/${place_id}', params, function(error, trends, response) {
 		if(!error) {
-			console.log(trends);
 			resp.json(trends);
 		}
 		else {
