@@ -20,8 +20,8 @@ function geoCodeByLatLng(lat, lng, resp) {
         resp.json(places);
       }
       else {
-  	    console.log(response);
-  	    throw error;
+  	    console.log(error);
+        resp.json(error);
       }
     });
 }
@@ -34,8 +34,8 @@ function geoCodesByTrend(resp) {
 			resp.json(trends);
 		}
 		else {
-  	    console.log(response);
-  	    throw error;
+  	    console.log(error);
+        resp.json(error);
        }
 	});
 }
@@ -48,8 +48,8 @@ function trends(place_id, resp) {
 			resp.json(trends);
 		}
 		else {
-  	    console.log(response);
-  	    throw error;
+  	    console.log(error);
+  	    resp.json(error);
   		}
 	});
 }
@@ -62,8 +62,8 @@ function getLatLng(place_id, resp) {
 			resp.json(trends);
 		}
 		else {
-  	    	console.log(response);
-  	    	throw error;
+  	    console.log(error);
+        resp.json(error);
   		}
 	});
 }
