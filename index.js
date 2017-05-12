@@ -54,6 +54,20 @@ function trends(place_id, resp) {
 	});
 }
 
+// GET https://api.twitter.com/1.1/trends/closest.json?lat=37.781157&long=-122.400612831116
+function get_closest_trends(lat, lng, resp) {
+  var params = { lat: lat, long: lng };
+  client.get('trends/closest', params, function(error, places, response) {
+      if (!error) {
+        resp.json(places);
+      }
+      else {
+        console.log(error);
+        resp.json(error);
+      }
+    });
+}
+
 // GET https://api.twitter.com/1.1/geo/id/df51dec6f4ee2b2c.json
 function getLatLng(place_id, resp) {
 	params = {}
@@ -119,6 +133,12 @@ app.get('/geo_code', function(request, response) {
   
 });
 
+// GET https://api.twitter.com/1.1/trends/closest.json?lat=37.781157&long=-122.400612831116
+app.get('/closest_trends', function(request, response) {
+  response.setHeader('Content-Type', 'application/json');
+  get_closest_trends(request.query.lat, request.query.lng, response);
+});
+
 // GET https://api.twitter.com/1.1/trends/available.json
 app.get('/geo_codes_by_trend', function(request, response) {
 	response.setHeader('Content-Type', 'application/json');
@@ -134,5 +154,7 @@ app.get('/get_lat_lng', function(request, response) {
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
+
+
 
 
